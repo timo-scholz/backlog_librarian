@@ -3,19 +3,25 @@ import database_handler
 from steam import steamUser
 
 
-create_db.main()
 
-#database_handler.insert_game(self, 1, "TEXT", 1, 2, 3, 4)
+
+def readUserData(filename = "userdata.txt"):
+    Data = []
+    with open(filename) as userData:
+        for line in userData:
+            Data.append(line.split("="))
+
+    return Data
+
 
 
 # Credits for steam.py go to https://github.com/zeo/python-steamuser
 def getSteamGames():
     # Set Steam ID and API Key
-    user = steamUser("STEAMID64", "APIKEY")
+    uData = readUserData()
+    user = steamUser(uData[0][1].strip('\n'), uData[1][1].strip('\n'))
     steamGames = user.getGames()
-    length = len(steamGames)
 
-    #
     steamData = database_handler.Game('steam.db')
 
     for x in steamGames:
@@ -26,7 +32,6 @@ def getSteamGames():
 
     steamData.print_games()
 
-#getSteamGames()
-
-steamData = database_handler.Game('steam.db')
-steamData.print_games()
+def main():
+    create_db.main()
+    
