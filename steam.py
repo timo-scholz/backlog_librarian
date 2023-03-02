@@ -62,6 +62,8 @@ class steamUser:
         response = request.json()
         data = response["response"]
 
+        
+
         if not data:
             return None, None
 
@@ -70,6 +72,7 @@ class steamUser:
             gameObject = {
                 "id": game["appid"],
                 "name": game["name"],
+                "image": "https://cdn.akamai.steamstatic.com/steam/apps/" + str(game["appid"]) + "/header.jpg" 
             }
 
             games.append(gameObject)

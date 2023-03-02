@@ -5,7 +5,7 @@ class Game:
     # Constructor of Game
     # Arguments:
     # pDatabase: String of Path to Database
-    def __init__(self, pDatabase, id_number=-1, name="", status=-1, plattform=-1, rating=-1, image=-1):
+    def __init__(self, pDatabase, id_number=-1, name="", status=-1, plattform=-1, rating=-1, image=""):
         self.id_number = id_number
         self.name = name
         self.status = status
@@ -34,6 +34,7 @@ class Game:
     # Function to insert row
     def insert_game(self, pId_number, pName, pStatus, pPlattform, pRating, pImage):
         illegalApo = pName.count("'")
+        illegalHashtag = pName.count("#")
 
         if illegalApo > 0:
             x = pName.split("'")
@@ -41,10 +42,7 @@ class Game:
             for y in x:
                 pName = pName + y + "''"
 
-        self.cursor.execute("""
-        INSERT INTO games VALUES
-        ({}, '{}', {}, {}, {}, {})
-        """.format(pId_number, pName, pStatus, pPlattform, pRating, pImage))
+        self.cursor.execute("REPLACE INTO games VALUES({}, '{}', {}, {}, {}, '{}')".format(pId_number, pName, pStatus, pPlattform, pRating, pImage))
 
         self.connection.commit()
 

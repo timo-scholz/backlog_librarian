@@ -2,6 +2,7 @@ import create_db
 import database_handler
 import os
 from steam import steamUser
+from gog import gogUser
 
 
 
@@ -33,11 +34,43 @@ def getSteamGames():
         values = x.values()
         game_id = int(x["id"])
         name = str(x["name"])
-        steamData.insert_game(game_id, name, 0, 1, 0, game_id)
+        image = str(x["image"])
+        steamData.insert_game(game_id, name, 0, 1, 0, image)
 
-    steamData.print_games()
+    #steamData.print_games()
+
+
+def getGogGames():
+    #todo Auth Method should ask for logins here
+
+    guser = gogUser()
+
+
+    gogGames = guser.getGames()
+
+    gogData = database_handler.Game('gog.db')
+
+    for x in gogGames:
+        values = x.values()
+        game_id = int(x["id"])
+        name = str(x["name"]),
+        image = str(x["image"])
+        split_name = str(name).split("'")
+        gogData.insert_game(game_id, split_name[1], 0, 2, 0, image)
+
+    print(len(gogGames))
+
+def mergeIntoOwned():
+    print("cool")
+    #TODO merging databases into owned.db
+    
 
 def main():
     userdataexists()
     create_db.main()
+    #getSteamGames()
+    #getGogGames()
+
     
+
+main()

@@ -131,3 +131,4 @@ dmypy.json
 # some private files
 *.db
 userdata.txt
+*.json

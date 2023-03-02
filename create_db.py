@@ -13,7 +13,7 @@ def main():
     status INTEGR,
     plattform INTEGR,
     rating INTEGR,
-    image INTEGR
+    image TEXT
     )
         """)
 
@@ -31,7 +31,7 @@ def main():
     status INTEGR,
     plattform INTEGR,
     rating INTEGR,
-    image INTEGR
+    image TEXT
     )
         """)
 
@@ -49,7 +49,7 @@ def main():
     status INTEGR,
     plattform INTEGR,
     rating INTEGR,
-    image INTEGR
+    image TEXT
     )
         """)
 
