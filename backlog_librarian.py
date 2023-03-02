@@ -1,5 +1,6 @@
 import create_db
 import database_handler
+import os
 from steam import steamUser
 
 
@@ -13,6 +14,10 @@ def readUserData(filename = "userdata.txt"):
 
     return Data
 
+def userdataexists():
+    if not os.path.isfile("userdata.txt"):
+        with open('userdata.txt', 'w') as f:
+            f.write('STEAMID64=ID64_HERE\nSTEAM_APIKEY=APIKEY_HERE')
 
 
 # Credits for steam.py go to https://github.com/zeo/python-steamuser
@@ -33,5 +38,6 @@ def getSteamGames():
     steamData.print_games()
 
 def main():
+    userdataexists()
     create_db.main()
     
