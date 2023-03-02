@@ -13,7 +13,11 @@ Planned Features:
 
 ## Steam
 
-after the userdata.txt is generated fill in your STEAMID64 and an valid Steam API Key. the Rest is handled by the script
+after the userdata.txt is generated fill in your STEAMID64 and a valid Steam API Key. the Rest is handled by the script
+
+https://steamid.xyz/
+
+https://steamcommunity.com/dev/apikey
 
 ## GOG
 
